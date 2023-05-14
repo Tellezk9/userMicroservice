@@ -22,9 +22,13 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "id_person")
-    private PersonEntity personEntity;
+    private String name;
+    private String lastName;
+    private Integer dniNumber;
+    private String phone;
+    private String birthDate;
+    private String mail;
+    private String password;
     @ManyToOne
     @JoinColumn(name = "id_role")
     private RoleEntity roleEntity;
