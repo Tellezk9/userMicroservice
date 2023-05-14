@@ -7,25 +7,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
 public class PrincipalUser implements UserDetails {
-    private String nombre;
-    private String nombreUsuario;
-    private String email;
+    private Integer nombreUsuario;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public PrincipalUser(String nombre, String nombreUsuario, String email, String password,
-                         Collection<? extends GrantedAuthority> authorities) {
-        this.nombre = nombre;
+    public PrincipalUser(String nombre, Integer nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.nombreUsuario = nombreUsuario;
-        this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public static PrincipalUser build(PersonEntity usuario, List<RoleEntity> roles) {
-        List<GrantedAuthority> authorities = roles.stream()
+    public static PrincipalUser build(UserEntity usuario, List<RoleEntity> roles) {
+         List<GrantedAuthority> authorities = roles.stream()
                 .map(rol -> new SimpleGrantedAuthority(rol.getName())).collect(Collectors.toList());
         return new PrincipalUser(usuario.getName(), usuario.getDniNumber(), usuario.getMail(),
                 usuario.getPassword(), authorities);
@@ -43,7 +37,7 @@ public class PrincipalUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nombreUsuario;
+        return Integer.toString(nombreUsuario);
     }
 
     @Override
@@ -64,13 +58,5 @@ public class PrincipalUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getEmail() {
-        return email;
     }
 }

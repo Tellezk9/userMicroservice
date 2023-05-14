@@ -1,6 +1,6 @@
 package com.pragma.powerup.usermicroservice.domain.model;
 
-public class User {
+public class Owner {
     private String name;
     private String lastName;
     private Integer dniNumber;
@@ -10,7 +10,7 @@ public class User {
     private String password;
     private Role role;
 
-    public User(String name, String lastName, Integer dniNumber, String phone, String birthDate, String mail, String password, Role role) {
+    public Owner(String name, String lastName, Integer dniNumber, String phone, String birthDate, String mail, String password, Role role) {
         this.name = name;
         this.lastName = lastName;
         this.dniNumber = dniNumber;
