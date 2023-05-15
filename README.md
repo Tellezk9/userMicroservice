@@ -34,15 +34,15 @@ To get a local copy up and running follow these steps.
 1. Clone the repository
 2. Change directory
    ```sh
-   cd power-up-arquetipo-v3
+   cd power-up-v4-practica-v1
    ```
-3. Create a new database in MySQL called powerup
+3. Create a new database in MySQL called session_1
 4. Update the database connection settings
    ```yml
    # src/main/resources/application-dev.yml
    spring:
       datasource:
-          url: jdbc:mysql://localhost/powerup
+          url: jdbc:mysql://localhost:3306/session_1
           username: root
           password: <your-password>
    ```

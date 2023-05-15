@@ -32,7 +32,10 @@ public class UserUseCase implements IUserServicePort {
     public User getProvider(Long id) {
         return userPersistencePort.getProvider(id);
     }
-
+    @Override
+    public User getProviderByDni(Integer id) {
+        return userPersistencePort.getProviderByDni(id);
+    }
     @Override
     public User getEmployee(Long id) {
         return userPersistencePort.getEmployee(id);
