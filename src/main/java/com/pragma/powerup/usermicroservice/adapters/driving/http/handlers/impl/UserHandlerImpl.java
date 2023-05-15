@@ -40,6 +40,10 @@ public class UserHandlerImpl implements IUserHandler {
     }
 
     @Override
+    public UserResponseDto getProviderByDni(Integer id) {
+        return userResponseMapper.toResponse(userServicePort.getProviderByDni(id));
+    }
+    @Override
     public UserResponseDto getEmployee(Long id) {
         return userResponseMapper.toResponse(userServicePort.getEmployee(id));
     }

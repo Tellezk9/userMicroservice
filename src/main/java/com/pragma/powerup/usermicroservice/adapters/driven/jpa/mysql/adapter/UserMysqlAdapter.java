@@ -66,6 +66,12 @@ public class UserMysqlAdapter implements IUserPersistencePort {
     }
 
     @Override
+    public User getProviderByDni(Integer id) {
+        UserEntity userEntity = userRepository.findByDniNumberAndRoleEntityId(id, PROVIDER_ROLE_ID).orElseThrow(UserNotFoundException::new);
+        return userEntityMapper.toUser(userEntity);
+    }
+
+    @Override
     public User getEmployee(Long id) {
         UserEntity userEntity = userRepository.findByIdAndRoleEntityId(id, EMPLOYEE_ROLE_ID).orElseThrow(UserNotFoundException::new);
         return userEntityMapper.toUser(userEntity);
