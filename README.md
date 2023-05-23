@@ -34,7 +34,7 @@ To get a local copy up and running follow these steps.
 1. Clone the repository
 2. Change directory
    ```sh
-   cd power-up-v4-practica-v1
+   cd power-up-v4-user-v1
    ```
 3. Create a new database in MySQL called session_1
 4. Update the database connection settings
