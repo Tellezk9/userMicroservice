@@ -42,7 +42,7 @@ To get a local copy up and running follow these steps.
    # src/main/resources/application-dev.yml
    spring:
       datasource:
-          url: jdbc:mysql://localhost:3306/session_1
+          url: jdbc:mysql://localhost:<your-MySQL-port>/user
           username: root
           password: <your-password>
    ```
