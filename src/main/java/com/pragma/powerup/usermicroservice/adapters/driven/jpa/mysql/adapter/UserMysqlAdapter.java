@@ -10,6 +10,7 @@ import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class UserMysqlAdapter implements IUserPersistencePort {
     private final IUserRepository userRepository;
     private final IRoleRepository roleRepository;
     private final IUserEntityMapper userEntityMapper;
+    private final PasswordEncoder passwordEncoder;
     @Override
     public void saveUser(User user) {
         if (user.getRole().getId().equals(PROVIDER_ROLE_ID))
@@ -35,6 +37,7 @@ public class UserMysqlAdapter implements IUserPersistencePort {
             throw new UserAlreadyExistsException();
         }
         roleRepository.findById(user.getRole().getId()).orElseThrow(RoleNotFoundException::new);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(userEntityMapper.toEntity(user));
     }
 

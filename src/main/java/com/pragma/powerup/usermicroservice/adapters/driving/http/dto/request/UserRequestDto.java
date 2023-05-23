@@ -1,23 +1,31 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.hibernate.validator.constraints.Length;
-
-import java.util.Date;
 
 @AllArgsConstructor
 @Getter
 public class UserRequestDto {
+    @NotBlank
     private String name;
+    @NotBlank
     private String lastName;
+    @Min(1)
     private Integer dniNumber;
-    @Length(max = 13, min = 10)
-    private Integer phone;
-    private Date birthDate;
-    @Pattern(regexp="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}", message="Por favor, introduzca un correo electrónico válido")
+    @NotBlank
+    @Pattern(regexp = "[+][0-9]{12}")
+    private String phone;
+    @NotBlank
+    @Pattern(regexp = "^\\d{4}/(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])$", message = "the date must be in the format yyyy/mm/dd")
+    private String birthDate;
+    @Email
     private String mail;
+    @NotBlank
     private String password;
-    private String idRole;
+    @Min(1)
+    private Integer idRole;
 }

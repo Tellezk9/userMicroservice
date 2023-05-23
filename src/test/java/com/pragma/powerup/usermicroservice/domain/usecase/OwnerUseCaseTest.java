@@ -21,9 +21,20 @@ class OwnerUseCaseTest {
     @Test
     void saveOwner() {
         Role role = new Role(4L, null, null);
-        Owner owner = new Owner("test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
+        Owner owner = new Owner(1L,"test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
         doNothing().when(ownerPersistencePort).saveOwner(owner);
         ownerUseCase.saveOwner(owner);
         verify(ownerPersistencePort, times(1)).saveOwner(owner);
+    }
+
+    @Test
+    void getOwnerByDni(){
+        Role role = new Role(4L, null, null);
+        Owner owner = new Owner(1L,"test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
+        when(ownerPersistencePort.getOwnerByDni(1)).thenReturn(owner);
+
+        ownerPersistencePort.getOwnerByDni(1);
+
+        verify(ownerPersistencePort, times(1)).getOwnerByDni(1);
     }
 }

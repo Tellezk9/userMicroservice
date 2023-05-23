@@ -43,7 +43,7 @@ public class BeanConfiguration {
     }
     @Bean
     public IUserPersistencePort userPersistencePort() {
-        return new UserMysqlAdapter(userRepository, roleRepository, userEntityMapper);
+        return new UserMysqlAdapter(userRepository, roleRepository, userEntityMapper,passwordEncoder);
     }
     @Bean
     public IOwnerServicePort ownerServicePort(){return new OwnerUseCase(ownerPersistencePort());
