@@ -4,6 +4,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.Role
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.UserEntity;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IUserEntityMapper;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IUserRepository;
+import com.pragma.powerup.usermicroservice.configuration.Constants;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.model.Role;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ class OwnerMysqlAdapterTest {
     @Test
     void saveOwnerSuccessful() {
         Role role = new Role(4L, null, null);
-        Owner owner = new Owner("test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", role);
+        Owner owner = new Owner(1L,"test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", role);
         RoleEntity roleEntity = new RoleEntity(4L, null, null);
         UserEntity user = new UserEntity(1L, "test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", roleEntity);
 
@@ -50,6 +51,24 @@ class OwnerMysqlAdapterTest {
         verify(userRepository).findByMail(owner.getMail());
         verify(passwordEncoder).encode(owner.getPassword());
         verify(userEntityMapper).ownerToUserEntity(owner);
+
+    }
+
+    @Test
+    void getOwnerByDni(){
+        UserEntity userEntity =  new UserEntity(1L, "test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", null);
+
+        Optional<UserEntity> user = Optional.of(userEntity);
+                new UserEntity(1L, "test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", null);
+        Owner owner = new Owner(1L,"test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", null);
+
+        when(userRepository.findByDniNumberAndRoleEntityId(1,Constants.OWNER_ROLE_ID)).thenReturn(user);
+        when(userEntityMapper.userEntityToOwner(user.get())).thenReturn(owner);
+
+        ownerMysqlAdapter.getOwnerByDni(1);
+
+        verify(userEntityMapper, times(1)).userEntityToOwner(user.get());
+        verify(userRepository, times(1)).findByDniNumberAndRoleEntityId(1,Constants.OWNER_ROLE_ID);
 
     }
 }

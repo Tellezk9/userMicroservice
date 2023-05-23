@@ -52,9 +52,15 @@ public class OwnerValidator {
         if (date == null || date.isEmpty()) {
             throw new EmptyFieldFoundException();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate lastDate = LocalDate.parse(date, formatter);
         LocalDate validDate = LocalDate.now().minusYears(18);
+        LocalDate lastDate;
+
+        try {
+            lastDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        } catch (Exception ex) {
+            throw new InvalidFormatDateException();
+        }
+
         if (validDate.isBefore(lastDate)) {
             throw new UserIsNotOfLegalAgeException();
         }

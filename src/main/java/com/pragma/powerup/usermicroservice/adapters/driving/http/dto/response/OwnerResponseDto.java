@@ -5,13 +5,13 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class PersonResponseDto {
+public class OwnerResponseDto {
+    private Long id;
     private String name;
-    private String surname;
-    private String mail;
+    private String lastName;
+    private Integer dniNumber;
     private String phone;
-    private String address;
-    private String idDniType;
-    private String dniNumber;
-    private String idPersonType;
+    private String birthDate;
+    private String mail;
+    private String password;
 }

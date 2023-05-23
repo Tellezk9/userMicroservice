@@ -20,4 +20,6 @@ public interface IUserEntityMapper {
     List<User> toUserList(List<UserEntity> userEntityList);
     @Mapping(target = "roleEntity.id", source = "role.id")
     UserEntity ownerToUserEntity(Owner owner);
+    @Mapping(target = "role.id", source = "roleEntity.id")
+    Owner userEntityToOwner(UserEntity userEntity);
 }

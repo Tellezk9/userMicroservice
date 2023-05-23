@@ -23,7 +23,7 @@ class OwnerValidatorTest {
     @Test
     void allFieldsFilled() {
         Role role = new Role(4L, null, null);
-        Owner owner = new Owner("test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
+        Owner owner = new Owner(1L,"test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
         assertTrue(() -> ownerValidator.allFieldsFilled(owner));
     }
 
@@ -40,7 +40,7 @@ class OwnerValidatorTest {
     void isEmptyWithoutParams(String name, String lastName, Integer dniNumber, String phone, String birthDate, String mail, String password) {
 
         Role role = new Role(4L, null, null);
-        Owner owner = new Owner(name, lastName, dniNumber, phone, birthDate, mail, password, role);
+        Owner owner = new Owner(1L,name, lastName, dniNumber, phone, birthDate, mail, password, role);
 
         assertThrows(EmptyFieldFoundException.class, () -> ownerValidator.allFieldsFilled(owner));
     }
