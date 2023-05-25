@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.OwnerResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IOwnerHandler;
-import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IUserHandler;
 import com.pragma.powerup.usermicroservice.configuration.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

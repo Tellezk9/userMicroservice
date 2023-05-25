@@ -24,7 +24,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponseDto> login(@Valid @RequestBody LoginRequestDto loginRequestDto) {
-        return new ResponseEntity<>(authHandler.login(loginRequestDto), HttpStatus.OK);
+        JwtResponseDto loginResponse = authHandler.login(loginRequestDto);
+
+        return new ResponseEntity<>(loginResponse, HttpStatus.OK);
     }
 
     @PostMapping("/refresh")
