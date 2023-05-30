@@ -57,18 +57,14 @@ class OwnerMysqlAdapterTest {
     @Test
     void getOwnerByDni(){
         UserEntity userEntity =  new UserEntity(1L, "test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", null);
-
-        Optional<UserEntity> user = Optional.of(userEntity);
-                new UserEntity(1L, "test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", null);
         Owner owner = new Owner(1L,"test", "testLastName", 12345, "+123456789012", "2002/05/01", "test@gmail.com", "12345t", null);
 
-        when(userRepository.findByDniNumberAndRoleEntityId(1,Constants.OWNER_ROLE_ID)).thenReturn(user);
-        when(userEntityMapper.userEntityToOwner(user.get())).thenReturn(owner);
+        when(userRepository.findByIdAndRoleEntityId(1L,Constants.OWNER_ROLE_ID)).thenReturn(Optional.of(userEntity));
+        when(userEntityMapper.userEntityToOwner(userEntity)).thenReturn(owner);
 
-        ownerMysqlAdapter.getOwnerByDni(1);
+        ownerMysqlAdapter.getOwnerById(1L);
 
-        verify(userEntityMapper, times(1)).userEntityToOwner(user.get());
-        verify(userRepository, times(1)).findByDniNumberAndRoleEntityId(1,Constants.OWNER_ROLE_ID);
-
+        verify(userEntityMapper, times(1)).userEntityToOwner(userEntity);
+        verify(userRepository, times(1)).findByIdAndRoleEntityId(1L,Constants.OWNER_ROLE_ID);
     }
 }

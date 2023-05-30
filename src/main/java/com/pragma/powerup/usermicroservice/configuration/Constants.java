@@ -31,6 +31,7 @@ public class Constants {
     public static final String INVALID_PHONE_MESSAGE = "Wrong phone format";
     public static final String INVALID_PHONE_LENGTH_MESSAGE = "Wrong phone length format";
     public static final String USER_IS_NOT_LEGAL_AGE = "The user is not legal age";
+    public static final String ROLE_NOT_ALLOWED_FOR_ACTION_MESSAGE = "Permission to perform this action has not been granted with this role";
 
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
     public static final String SWAGGER_DESCRIPTION_MESSAGE = "User microservice";

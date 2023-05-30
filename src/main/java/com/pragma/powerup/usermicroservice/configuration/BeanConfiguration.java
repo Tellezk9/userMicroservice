@@ -7,6 +7,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IRo
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IUserEntityMapper;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IRoleRepository;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IUserRepository;
+import com.pragma.powerup.usermicroservice.configuration.security.jwt.JwtAuthUser;
 import com.pragma.powerup.usermicroservice.domain.api.IOwnerServicePort;
 import com.pragma.powerup.usermicroservice.domain.api.IRoleServicePort;
 import com.pragma.powerup.usermicroservice.domain.api.IUserServicePort;
@@ -29,6 +30,7 @@ public class BeanConfiguration {
     private final IRoleEntityMapper roleEntityMapper;
     private final IUserEntityMapper userEntityMapper;
     private final PasswordEncoder passwordEncoder;
+    private final JwtAuthUser jwtAuthUser;
     @Bean
     public IRoleServicePort roleServicePort() {
         return new RoleUseCase(rolePersistencePort());
@@ -46,7 +48,7 @@ public class BeanConfiguration {
         return new UserMysqlAdapter(userRepository, roleRepository, userEntityMapper,passwordEncoder);
     }
     @Bean
-    public IOwnerServicePort ownerServicePort(){return new OwnerUseCase(ownerPersistencePort());
+    public IOwnerServicePort ownerServicePort(){return new OwnerUseCase(ownerPersistencePort(), jwtAuthUser);
     }
     @Bean
     public IOwnerPersistencePort ownerPersistencePort(){

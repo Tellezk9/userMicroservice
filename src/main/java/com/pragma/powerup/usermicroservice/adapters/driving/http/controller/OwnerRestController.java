@@ -50,6 +50,6 @@ public class OwnerRestController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/getOwner/{id}")
     public ResponseEntity<OwnerResponseDto> getProviderByDni(@PathVariable Integer id) {
-        return ResponseEntity.ok(ownerHandler.getOwnerByDni(id));
+        return ResponseEntity.ok(ownerHandler.getOwnerById(id));
     }
 }
