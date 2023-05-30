@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
+import com.pragma.powerup.usermicroservice.domain.auth.IAuthUser;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.model.Role;
 import com.pragma.powerup.usermicroservice.domain.spi.IOwnerPersistencePort;
@@ -15,6 +16,8 @@ import static org.mockito.Mockito.*;
 class OwnerUseCaseTest {
     @Mock
     private IOwnerPersistencePort ownerPersistencePort;
+    @Mock
+    private IAuthUser authUser;
     @InjectMocks
     private OwnerUseCase ownerUseCase;
 
@@ -23,18 +26,19 @@ class OwnerUseCaseTest {
         Role role = new Role(4L, null, null);
         Owner owner = new Owner(1L,"test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
         doNothing().when(ownerPersistencePort).saveOwner(owner);
+        when(authUser.getRole()).thenReturn("4");
         ownerUseCase.saveOwner(owner);
         verify(ownerPersistencePort, times(1)).saveOwner(owner);
     }
 
     @Test
-    void getOwnerByDni(){
+    void getOwnerById(){
         Role role = new Role(4L, null, null);
         Owner owner = new Owner(1L,"test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
-        when(ownerPersistencePort.getOwnerByDni(1)).thenReturn(owner);
+        when(ownerPersistencePort.getOwnerById(1L)).thenReturn(owner);
 
-        ownerPersistencePort.getOwnerByDni(1);
+        ownerPersistencePort.getOwnerById(1L);
 
-        verify(ownerPersistencePort, times(1)).getOwnerByDni(1);
+        verify(ownerPersistencePort, times(1)).getOwnerById(1L);
     }
 }

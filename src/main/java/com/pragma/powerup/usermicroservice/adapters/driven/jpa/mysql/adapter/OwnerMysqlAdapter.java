@@ -11,6 +11,8 @@ import com.pragma.powerup.usermicroservice.domain.spi.IOwnerPersistencePort;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 public class OwnerMysqlAdapter implements IOwnerPersistencePort {
     private final IUserRepository userRepository;
@@ -30,8 +32,11 @@ public class OwnerMysqlAdapter implements IOwnerPersistencePort {
     }
 
     @Override
-    public Owner getOwnerByDni(Integer dni) {
-        UserEntity userEntity = userRepository.findByDniNumberAndRoleEntityId(dni, Constants.OWNER_ROLE_ID).orElseThrow(UserNotFoundException::new);
-        return userEntityMapper.userEntityToOwner(userEntity);
+    public Owner getOwnerById(Long id) {
+        Optional<UserEntity> userEntity = userRepository.findByIdAndRoleEntityId(id, Constants.OWNER_ROLE_ID);
+        if (!userEntity.isPresent()){
+            throw new UserNotFoundException();
+        }
+        return userEntityMapper.userEntityToOwner(userEntity.get());
     }
 }

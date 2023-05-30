@@ -35,13 +35,13 @@ class OwnerHandlerImplTest {
     }
 
     @Test
-    void getOwnerByDni() {
+    void getOwnerById() {
         Owner owner = new Owner(null,"testName","testLastName",1234,"+439094230412","2002/05/01","test@gmail.com","string",null);
-        when(ownerServicePort.getOwnerByDni(1)).thenReturn(owner);
+        when(ownerServicePort.getOwnerById(1)).thenReturn(owner);
 
-        ownerHandler.getOwnerByDni(1);
+        ownerHandler.getOwnerById(1);
 
-        verify(ownerServicePort,times(1)).getOwnerByDni(1);
+        verify(ownerServicePort,times(1)).getOwnerById(1);
         verify(ownerRequestMapper,times(1)).toResponse(owner);
     }
 }

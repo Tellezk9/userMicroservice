@@ -20,7 +20,7 @@ public class OwnerHandlerImpl implements IOwnerHandler {
     }
 
     @Override
-    public OwnerResponseDto getOwnerByDni(Integer id) {
-        return ownerRequestMapper.toResponse(ownerServicePort.getOwnerByDni(id));
+    public OwnerResponseDto getOwnerById(Integer id) {
+        return ownerRequestMapper.toResponse(ownerServicePort.getOwnerById(id));
     }
 }

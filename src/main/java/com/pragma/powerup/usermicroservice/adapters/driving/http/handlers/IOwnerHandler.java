@@ -5,5 +5,5 @@ import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.Ow
 
 public interface IOwnerHandler {
     void saveOwner(OwnerRequestDto ownerRequestDto);
-    OwnerResponseDto getOwnerByDni(Integer id);
+    OwnerResponseDto getOwnerById(Integer id);
 }

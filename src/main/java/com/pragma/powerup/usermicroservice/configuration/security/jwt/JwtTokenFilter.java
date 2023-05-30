@@ -27,6 +27,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**", "/actuator/**", "/person/");
     private AntPathMatcher pathMatcher = new AntPathMatcher();
+    private JwtAuthUser authUser = new JwtAuthUser();
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain)
@@ -34,6 +36,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String token = getToken(req);
         if (token != null && jwtProvider.validateToken(token)) {
             String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
+            setAuthUser(token);
             UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
 
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
@@ -60,5 +63,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return header.substring(7); // return everything after "Bearer "
         }
         return null;
+    }
+
+    private void setAuthUser(String token){
+        authUser.setId(jwtProvider.getIdFromToken(token));
+        authUser.setMail(jwtProvider.getNombreUsuarioFromToken(token));
+        authUser.setRole(jwtProvider.getRoleFromToken(token).get(0));
     }
 }
