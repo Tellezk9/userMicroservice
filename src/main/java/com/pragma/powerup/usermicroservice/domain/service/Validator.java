@@ -13,8 +13,8 @@ public class Validator {
     }
 
 
-    public boolean hasRoleValid(Long authRole, Long validRole) {
-        if ((authRole == null || authRole <= 0 ) || (validRole == null || validRole <= 0)) {
+    public boolean hasRoleValid(String authRole, String validRole) {
+        if ((authRole == null || authRole.isEmpty() ) || (validRole == null || validRole.isEmpty())) {
             throw new EmptyFieldFoundException();
         }
         if (!authRole.equals(validRole)) {

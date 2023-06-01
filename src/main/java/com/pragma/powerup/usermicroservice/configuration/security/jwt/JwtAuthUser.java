@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtAuthUser implements IAuthUser {
-    public Long id;
-    public String mail;
-    public String role;
+    public static Long id;
+    public static String mail;
+    public static String role;
 
     @Override
     public Long getId() {

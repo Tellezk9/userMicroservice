@@ -23,7 +23,7 @@ public class OwnerUseCase implements IOwnerServicePort {
     }
 
     public void saveOwner(Owner owner) {
-        validator.hasRoleValid(Long.valueOf(authUser.getRole()),Constants.PROVIDER_ROLE_ID);
+        validator.hasRoleValid(authUser.getRole(),Constants.PROVIDER_ROLE_NAME);
 
         ownerValidator.allFieldsFilled(owner);
         ownerValidator.isValidPhone(owner.getPhone());
