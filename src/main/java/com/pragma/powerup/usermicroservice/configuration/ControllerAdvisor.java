@@ -1,6 +1,8 @@
 package com.pragma.powerup.usermicroservice.configuration;
 
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.*;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.exceptions.ErrorExecutionException;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.exceptions.RestaurantNotFoundException;
 import com.pragma.powerup.usermicroservice.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.pragma.powerup.usermicroservice.configuration.Constants.*;
-import static com.pragma.powerup.usermicroservice.configuration.Constants.ROLE_NOT_ALLOWED_FOR_ACTION_MESSAGE;
 
 @ControllerAdvice
 public class ControllerAdvisor {
@@ -143,5 +144,27 @@ public class ControllerAdvisor {
     public ResponseEntity<Map<String, String>>roleNotAllowedForThisActionException(RoleNotAllowedForThisActionException roleNotAllowedForThisActionException){
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, ROLE_NOT_ALLOWED_FOR_ACTION_MESSAGE));
+    }
+    @ExceptionHandler(UserDniAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleUserDniAlreadyExistsException(
+            UserDniAlreadyExistsException userDniAlreadyExistsException) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, USER_DNI_ALREADY_EXISTS_MESSAGE));
+    }
+    @ExceptionHandler(UserMailAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleUserMailAlreadyExistsException(
+            UserMailAlreadyExistsException userMailAlreadyExistsException) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, USER_MAIL_ALREADY_EXISTS_MESSAGE));
+    }
+    @ExceptionHandler(ErrorExecutionException.class)
+    public ResponseEntity<Map<String, String>>errorExcecutionException(ErrorExecutionException errorExcecutionException){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, RESPONSE_ERROR_EXECUTION));
+    }
+    @ExceptionHandler(RestaurantNotFoundException.class)
+    public ResponseEntity<Map<String, String>>restaurantNotFoundException(RestaurantNotFoundException restaurantNotFoundException){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, RESTAURANT_NOT_FOUND_MESSAGE));
     }
 }

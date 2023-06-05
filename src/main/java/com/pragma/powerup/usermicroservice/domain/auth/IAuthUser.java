@@ -4,4 +4,5 @@ public interface IAuthUser {
     Long getId();
     String getMail();
     String getRole();
+    String getToken();
 }

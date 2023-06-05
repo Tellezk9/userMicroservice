@@ -69,5 +69,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         authUser.setId(jwtProvider.getIdFromToken(token));
         authUser.setMail(jwtProvider.getNombreUsuarioFromToken(token));
         authUser.setRole(jwtProvider.getRoleFromToken(token).get(0));
+        authUser.setToken(token);
     }
 }

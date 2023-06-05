@@ -18,3 +18,7 @@ management:
     web:
       exposure:
         include: "*"
+
+app:
+  urls:
+    urlToRestaurantMicroService: "http://localhost:8091/"
