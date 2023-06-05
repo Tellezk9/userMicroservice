@@ -20,6 +20,7 @@ public class Constants {
     public static final String USER_DELETED_MESSAGE = "User deleted successfully";
     public static final String RESPONSE_ERROR_MESSAGE_KEY = "error";
     public static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials";
+    public static final String RESPONSE_ERROR_EXECUTION = "error to make the process";
     public static final String PASSWORD_OR_MAIL_WRONG_MESSAGE = "Wrong password or mail";
     public static final String NO_DATA_FOUND_MESSAGE = "No data found for the requested petition";
     public static final String PERSON_ALREADY_EXISTS_MESSAGE = "A person already exists with the DNI number provided";
@@ -28,6 +29,8 @@ public class Constants {
     public static final String ROLE_NOT_FOUND_MESSAGE = "No role found with the id provided";
     public static final String ROLE_NOT_ALLOWED_MESSAGE = "No permission granted to create users with this role";
     public static final String USER_ALREADY_EXISTS_MESSAGE = "A user already exists with the role provided";
+    public static final String USER_DNI_ALREADY_EXISTS_MESSAGE = "A user already exists with the dni provided";
+    public static final String USER_MAIL_ALREADY_EXISTS_MESSAGE = "A user already exists with the mail provided";
     public static final String USER_NOT_FOUND_MESSAGE = "No user found with the role provided";
     public static final String EMPTY_FIELD_FOUND_MESSAGE = "All fields must be completed";
     public static final String INVALID_FORMAT_DATE_MESSAGE = "Date must be in the format 'yyyy/MM/dd'";
@@ -36,6 +39,7 @@ public class Constants {
     public static final String INVALID_PHONE_LENGTH_MESSAGE = "Wrong phone length format";
     public static final String USER_IS_NOT_LEGAL_AGE = "The user is not legal age";
     public static final String ROLE_NOT_ALLOWED_FOR_ACTION_MESSAGE = "Permission to perform this action has not been granted with this role";
+    public static final String RESTAURANT_NOT_FOUND_MESSAGE = "The restaurant was not found";
 
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
     public static final String SWAGGER_DESCRIPTION_MESSAGE = "User microservice";

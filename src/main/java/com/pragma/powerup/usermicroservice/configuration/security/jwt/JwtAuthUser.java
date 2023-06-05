@@ -8,6 +8,7 @@ public class JwtAuthUser implements IAuthUser {
     public static Long id;
     public static String mail;
     public static String role;
+    public static String token;
 
     @Override
     public Long getId() {
@@ -34,5 +35,14 @@ public class JwtAuthUser implements IAuthUser {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

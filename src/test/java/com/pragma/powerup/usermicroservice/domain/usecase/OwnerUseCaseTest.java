@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
+import com.pragma.powerup.usermicroservice.configuration.Constants;
 import com.pragma.powerup.usermicroservice.domain.auth.IAuthUser;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.model.Role;
@@ -26,7 +27,7 @@ class OwnerUseCaseTest {
         Role role = new Role(4L, null, null);
         Owner owner = new Owner(1L,"test", "testLastName", 1234, "+123456789012", "2002/05/01", "test@gmail.com", "1234", role);
         doNothing().when(ownerPersistencePort).saveOwner(owner);
-        when(authUser.getRole()).thenReturn("4");
+        when(authUser.getRole()).thenReturn(Constants.PROVIDER_ROLE_NAME);
         ownerUseCase.saveOwner(owner);
         verify(ownerPersistencePort, times(1)).saveOwner(owner);
     }

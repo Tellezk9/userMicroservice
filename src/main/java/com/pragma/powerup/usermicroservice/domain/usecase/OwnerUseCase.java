@@ -26,11 +26,13 @@ public class OwnerUseCase implements IOwnerServicePort {
         validator.hasRoleValid(authUser.getRole(),Constants.PROVIDER_ROLE_NAME);
 
         ownerValidator.allFieldsFilled(owner);
-        ownerValidator.isValidPhone(owner.getPhone());
-        ownerValidator.isOlder(owner.getBirthDate());
-        ownerValidator.isValidMail(owner.getMail());
+        validator.isValidPhone(owner.getPhone());
+        validator.isOlder(owner.getBirthDate());
+        validator.isValidMail(owner.getMail());
+
         Role role = new Role(Constants.OWNER_ROLE_ID,null,null);
         owner.setRole(role);
+
         ownerPersistencePort.saveOwner(owner);
     }
 
