@@ -1,6 +1,7 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers;
 
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.UserEntity;
+import com.pragma.powerup.usermicroservice.domain.model.Client;
 import com.pragma.powerup.usermicroservice.domain.model.Employee;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.model.User;
@@ -27,7 +28,9 @@ public interface IUserEntityMapper {
 
     @Mapping(target = "roleEntity.id", source = "role.id")
     UserEntity employeeToUserEntity(Employee employee);
-
     @Mapping(target = "role.id", source = "roleEntity.id")
     Employee userEntityToEmployee(UserEntity userEntity);
+
+    @Mapping(target = "roleEntity.id", source = "role.id")
+    UserEntity clientToUserEntity(Client client);
 }
