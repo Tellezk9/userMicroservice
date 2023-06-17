@@ -54,7 +54,7 @@ class EmployeeRestControllerTest {
 
     @Test
     void getEmployee() throws Exception {
-        EmployeeResponseDto employeeResponseDto = new EmployeeResponseDto(1L, "testName", "testLastName", 1234, "+439094230412", "2002/05/01", "test@gmail.com", "string");
+        EmployeeResponseDto employeeResponseDto = new EmployeeResponseDto(1L, "testName", "testLastName", 1234, "+439094230412", "2002/05/01", "test@gmail.com");
         Integer dniNumber = 1;
         when(employeeHandler.findByDni(dniNumber)).thenReturn(employeeResponseDto);
 
@@ -67,8 +67,7 @@ class EmployeeRestControllerTest {
                 .andExpect(jsonPath("$.dniNumber").value(employeeResponseDto.getDniNumber()))
                 .andExpect(jsonPath("$.phone").value(employeeResponseDto.getPhone()))
                 .andExpect(jsonPath("$.birthDate").value(employeeResponseDto.getBirthDate()))
-                .andExpect(jsonPath("$.mail").value(employeeResponseDto.getMail()))
-                .andExpect(jsonPath("$.password").value(employeeResponseDto.getPassword()));
+                .andExpect(jsonPath("$.mail").value(employeeResponseDto.getMail()));
 
         verify(employeeHandler, times(1)).findByDni(dniNumber);
     }

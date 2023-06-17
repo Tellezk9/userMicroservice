@@ -4,4 +4,5 @@ import com.pragma.powerup.usermicroservice.domain.model.Client;
 
 public interface IClientPersistencePort {
     void saveClient(Client client);
+    Client getClientById(Long id);
 }

@@ -30,4 +30,10 @@ public class ClientUseCase implements IClientServicePort {
 
         clientPersistencePort.saveClient(client);
     }
+
+    public Client getClientById(Integer id) {
+        validator.isIdValid(id);
+
+        return clientPersistencePort.getClientById(Long.valueOf(id));
+    }
 }

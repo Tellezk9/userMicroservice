@@ -33,4 +33,6 @@ public interface IUserEntityMapper {
 
     @Mapping(target = "roleEntity.id", source = "role.id")
     UserEntity clientToUserEntity(Client client);
+    @Mapping(target = "role.id", source = "roleEntity.id")
+    Client userEntityToClient(UserEntity userEntity);
 }

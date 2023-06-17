@@ -28,4 +28,16 @@ class ClientUseCaseTest {
 
         verify(clientPersistencePort, times(1)).saveClient(client);
     }
+
+    @Test
+    void getClientById() {
+        int id = 1;
+        Client client = new Client(null, "testName", "testLastName", 1234, "+439094230412", "2002/05/01", "test@gmail.com", "string", null);
+
+        when(clientPersistencePort.getClientById((long) id)).thenReturn(client);
+
+        clientUseCase.getClientById(id);
+
+        verify(clientPersistencePort,times(1)).getClientById((long) id);
+    }
 }
