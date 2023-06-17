@@ -50,7 +50,7 @@ class OwnerRestControllerTest {
     }
     @Test
     void getOwner() throws Exception{
-         OwnerResponseDto ownerResponseDto= new OwnerResponseDto(1L,"testName", "testLastName", 1234, "+439094230412", "2002/05/01", "test@gmail.com", "string");
+         OwnerResponseDto ownerResponseDto= new OwnerResponseDto(1L,"testName", "testLastName", 1234, "+439094230412", "2002/05/01", "test@gmail.com");
          when(ownerHandler.getOwnerById(1)).thenReturn(ownerResponseDto);
 
          mockMvc.perform(get("/owner/getOwner/"+1))
@@ -62,8 +62,7 @@ class OwnerRestControllerTest {
                  .andExpect(jsonPath("$.dniNumber").value(ownerResponseDto.getDniNumber()))
                  .andExpect(jsonPath("$.phone").value(ownerResponseDto.getPhone()))
                  .andExpect(jsonPath("$.birthDate").value(ownerResponseDto.getBirthDate()))
-                 .andExpect(jsonPath("$.mail").value(ownerResponseDto.getMail()))
-                 .andExpect(jsonPath("$.password").value(ownerResponseDto.getPassword()));
+                 .andExpect(jsonPath("$.mail").value(ownerResponseDto.getMail()));
 
          verify(ownerHandler, times(1)).getOwnerById(1);
     }
