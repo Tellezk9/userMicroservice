@@ -46,8 +46,15 @@ To get a local copy up and running follow these steps.
           username: root
           password: <your-password>
    ```
-5. After the tables are created execute src/main/resources/data.sql content to populate the database
-6. Open Swagger UI and search the /auth/login endpoint and login with userDni: 123, password: 1234
+5. add the restaurant microservice connection settings
+   ```yml
+   # src/main/resources/application-dev.yml
+   app:
+      urls:
+          urlToRestaurantMicroService: "http://<your-restaurantMicroservice>:<your-port>/"
+   ```
+6. After the tables are created execute src/main/resources/data.sql content to populate the database
+7. Open Swagger UI and search the /auth/login endpoint and login with userDni: 123, password: 1234
 
 <!-- USAGE -->
 ## Usage
