@@ -2,7 +2,6 @@ package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.ClientRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.ClientResponseDto;
-import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IClientHandler;
 import com.pragma.powerup.usermicroservice.configuration.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,7 +41,7 @@ public class ClientControllerRest {
     @Operation(summary = "Get a client by id",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Provider owner returned",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponseDto.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ClientResponseDto.class))),
                     @ApiResponse(responseCode = "404", description = "User not found with owner role",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/getClient/{id}")

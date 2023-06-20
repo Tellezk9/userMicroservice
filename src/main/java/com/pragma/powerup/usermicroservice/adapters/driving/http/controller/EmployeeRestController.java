@@ -2,7 +2,6 @@ package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeeRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.EmployeeResponseDto;
-import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IEmployeeHandler;
 import com.pragma.powerup.usermicroservice.configuration.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,7 +42,7 @@ public class EmployeeRestController {
     @Operation(summary = "Get a employee user",
             responses = {
                     @ApiResponse(responseCode = "200", description = "employee user returned",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponseDto.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeResponseDto.class))),
                     @ApiResponse(responseCode = "404", description = "User not found with employee role",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/getEmployee/{dniNumber}")

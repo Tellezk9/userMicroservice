@@ -2,7 +2,6 @@ package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.OwnerResponseDto;
-import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.UserResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IOwnerHandler;
 import com.pragma.powerup.usermicroservice.configuration.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,10 +41,10 @@ public class OwnerRestController {
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USER_CREATED_MESSAGE));
     }
 
-    @Operation(summary = "Get a owner by dni",
+    @Operation(summary = "Get a owner by id",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Provider owner returned",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponseDto.class))),
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OwnerResponseDto.class))),
                     @ApiResponse(responseCode = "404", description = "User not found with owner role",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @GetMapping("/getOwner/{id}")
