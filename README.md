@@ -1,8 +1,8 @@
 <br />
 <div align="center">
-<h3 align="center">PRAGMA POWER-UP</h3>
+  <h2>User Microservice</h2>
   <p align="center">
-    In this challenge you are going to design the backend of a system that centralizes the services and orders of a restaurant chain that has different branches in the city.
+   The backend of this system handles the management of user operations, such as user creation, updating, and deletion, based on roles, while also providing authTokens for authentication. 
   </p>
 </div>
 
